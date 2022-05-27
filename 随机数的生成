@@ -1,0 +1,30 @@
+import random
+random.seed(12)
+x=random.randint(1,10)
+y=[random.randint(1,10)]
+for i in range(1,30):
+    x=(31459269*x+453806245)%2147483648
+    y.append(x/2147483648)
+del y[0] 
+y
+
+def LCG1(n,seed=123):
+    "线性同余发生器生成n个0-1内的随机数"
+    import random
+    random.seed(seed)
+    x=random.randint(1,10)
+    y=[random.randint(1,10)]
+    for i in range(1,n+1):
+        x=(31459269*x+453806245)%2147483648
+        y.append(x/2147483648)
+    del y[0] 
+    return y
+#绘制直方图    
+import matplotlib.pyplot as plt 
+plt.hist(LCG1(4000,5808))
+#绘制有标题的直方图
+plt.hist(LCG1(4000,5808),bins=10)
+plt.title("data analyze") 
+plt.xlabel("x")
+plt.ylabel("rate") 
+plt.show()
